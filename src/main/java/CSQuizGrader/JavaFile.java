@@ -21,7 +21,14 @@ public class JavaFile {
         }
     }
 
-    public void fixClassSyntax() {
+    public void updateJavaFile() {
+        ArrayList<String> fiexedCode = this.fixClassSyntax();
+        //write to file
+        //This will only write the code for one class to a new file
+        //needs to run for every file that needs updating
+    }
+
+    private ArrayList<String> fixClassSyntax() {
         ArrayList<String> fixedCode = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
         for (int i = 0; i < javaFile.size(); i++) {
@@ -44,6 +51,7 @@ public class JavaFile {
             fixedCode.add(concatenateList(words));
             words.clear();
         }
+        return fixedCode;
     }
 
     private String concatenateList(ArrayList<String> list) {
