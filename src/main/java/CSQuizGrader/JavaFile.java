@@ -57,7 +57,7 @@ public class JavaFile {
     private String concatenateList(ArrayList<String> list) {
         String output = "";
         for (String str : list) {
-            output += str;
+            output += str + " ";
         }
         return output;
     }
