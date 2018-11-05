@@ -1,8 +1,6 @@
 package CSQuizGrader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class JavaFile {
@@ -21,11 +19,14 @@ public class JavaFile {
         }
     }
 
-    public void updateJavaFile() {
-        ArrayList<String> fiexedCode = this.fixClassSyntax();
-        //write to file
-        //This will only write the code for one class to a new file
-        //needs to run for every file that needs updating
+    public void updateJavaFile() throws IOException {
+        File updatedFile = new File("TextSources/temp.txt");
+        updatedFile.createNewFile();
+        FileWriter fileWriter = new FileWriter(updatedFile);
+        ArrayList<String> fixedClassFile = this.fixClassSyntax();
+        for (String line : fixedClassFile) {
+            fileWriter.write(line);
+        }
     }
 
     private ArrayList<String> fixClassSyntax() {
@@ -44,7 +45,7 @@ public class JavaFile {
                     words.add("{");
                     errorLog.add("Missing Bracket");
                 }
-            } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) == ';') {
+            } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) != ';' && words.get(i) != "}") {
                 words.add(";");
                 errorLog.add("Missing semicolon");
             }
