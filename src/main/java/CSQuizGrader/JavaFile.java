@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class JavaFile {
     public ArrayList<String> javaFile = new ArrayList<>();
-    public ArrayList<String> errorLog = new ArrayList<>();
+    private ArrayList<String> errorLog = new ArrayList<>();
 
     public JavaFile(String filepath) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File(filepath)));
             String st;
             while ((st = br.readLine()) != null) {
-                javaFile.add(st);
+                javaFile.add(st + " "); //to account for loss of info during the split by space
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,9 +27,11 @@ public class JavaFile {
         for (String line : fixedClassFile) {
             fileWriter.write(line);
         }
+        File oldFile = new File("TextSources/SampleText1.txt");
+        oldFile.delete();
     }
 
-    private ArrayList<String> fixClassSyntax() {
+    public ArrayList<String> fixClassSyntax() {
         ArrayList<String> fixedCode = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
         for (int i = 0; i < javaFile.size(); i++) {
@@ -40,10 +42,12 @@ public class JavaFile {
                     indexOfSpace = j + 1;
                 }
             }
+            System.out.println(words);
+
             if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected")) {
                 if (!words.get(words.size() - 1).equals("{")) {
                     words.add("{");
-                    errorLog.add("Missing Bracket");
+                    errorLog.add("Missing open brace");
                 }
             } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) != ';' && words.get(i) != "}") {
                 words.add(";");
@@ -61,5 +65,9 @@ public class JavaFile {
             output += str + " ";
         }
         return output;
+    }
+
+    public ArrayList<String> getErrorLog() {
+        return this.errorLog;
     }
 }
