@@ -48,7 +48,10 @@ public class JavaFile {
                     words.add("{");
                     errorLog.add("missing open brace");
                 }
-            } else if (!words.get(words.size() - 1).charAt(words.get()))
+            } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) != ';') {
+                words.add(";");
+                errorLog.add("missing semicolon");
+            }
             System.out.println(words);
 
             fixedCode.add(concatenateList(words));
