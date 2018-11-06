@@ -42,17 +42,15 @@ public class JavaFile {
                     indexOfSpace = j + 1;
                 }
             }
-            System.out.println(words);
-
+            //words has the individual words from each line of code
             if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected")) {
                 if (!words.get(words.size() - 1).equals("{")) {
                     words.add("{");
-                    errorLog.add("Missing open brace");
+                    errorLog.add("missing open brace");
                 }
-            } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) != ';' && words.get(i) != "}") {
-                words.add(";");
-                errorLog.add("Missing semicolon");
-            }
+            } else if (!words.get(words.size() - 1).charAt(words.get()))
+            System.out.println(words);
+
             fixedCode.add(concatenateList(words));
             words.clear();
         }
