@@ -47,7 +47,6 @@ public class JavaFile {
                     indexOfSpace = j + 1;
                 }
             }
-
             //words has the individual words from each line of code
             if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected") ||
                     words.get(0).equals("for") || words.get(0).equals("while") || words.get(0).equals("if")) {
