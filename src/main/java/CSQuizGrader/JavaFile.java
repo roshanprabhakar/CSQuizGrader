@@ -6,8 +6,10 @@ import java.util.ArrayList;
 public class JavaFile {
     public ArrayList<String> javaFile = new ArrayList<>();
     private ArrayList<String> errorLog = new ArrayList<>();
+    String fileName;
 
-    public JavaFile(String filepath) {
+    public JavaFile(String filepath, String fileName) {
+        this.fileName = fileName;
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File(filepath)));
             String st;
@@ -19,16 +21,19 @@ public class JavaFile {
         }
     }
 
-    public void updateJavaFile() throws IOException {
-        File updatedFile = new File("TextSources/temp.txt");
-        updatedFile.createNewFile();
-        FileWriter fileWriter = new FileWriter(updatedFile);
-        ArrayList<String> fixedClassFile = this.fixClassSyntax();
-        for (String line : fixedClassFile) {
-            fileWriter.write(line);
+    public void updateJavaFile(ArrayList<String> args) {
+        try {
+            File correctedArgs = new File("src/TextSources/" + fileName);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(correctedArgs.getAbsolutePath()));
+
+            for (String line : args) {
+                bw.write(line + "\n");
+            }
+
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        File oldFile = new File("TextSources/SampleText1.txt");
-        oldFile.delete();
     }
 
     public ArrayList<String> fixClassSyntax() {
@@ -42,18 +47,20 @@ public class JavaFile {
                     indexOfSpace = j + 1;
                 }
             }
+
             //words has the individual words from each line of code
-            if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected")) {
+            if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected") ||
+                    words.get(0).equals("for") || words.get(0).equals("while") || words.get(0).equals("if")) {
                 if (!words.get(words.size() - 1).equals("{")) {
                     words.add("{");
-                    errorLog.add("missing open brace");
+
+                    errorLog.add("missing open brace at line: " + (i + 1));
                 }
             } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) != ';') {
                 words.add(";");
-                errorLog.add("missing semicolon");
+                errorLog.add("missing semicolon at line: " + (i + 1));
             }
-            System.out.println(words);
-
+            //add appropriate "}" to end of file
             fixedCode.add(concatenateList(words));
             words.clear();
         }
@@ -69,6 +76,7 @@ public class JavaFile {
     }
 
     public ArrayList<String> getErrorLog() {
+        //need to get rid of repeated
         return this.errorLog;
     }
 }
