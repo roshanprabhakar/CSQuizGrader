@@ -1,6 +1,7 @@
 package CSQuizGrader;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class JavaFile {
@@ -63,7 +64,25 @@ public class JavaFile {
             fixedCode.add(concatenateList(words));
             words.clear();
         }
+        //fix closed braces
+        addClosedBraces(fixedCode);
         return fixedCode;
+    }
+
+    private void addClosedBraces(ArrayList<String> fixedCode) {
+        int closedBracesNeeded = 0;
+        for (String line : fixedCode) {
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '{') {
+                    closedBracesNeeded++;
+                } else if (line.charAt(i) == '}') {
+                    closedBracesNeeded--;
+                }
+            }
+        }
+        for (int i = 0; i < closedBracesNeeded; i++) {
+            fixedCode.add("}");
+        }
     }
 
     private String concatenateList(ArrayList<String> list) {
