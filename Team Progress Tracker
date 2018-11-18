@@ -1,0 +1,21 @@
+# Algorithm
+1. Take a picture of a test
+2. Run OCR Lib (probablyy google cloud vision)
+3. Run Compiler to find Syntax errors
+4. Record Syntax errors (missing semicolon, etc.)
+5. Smart fix syntax errors
+6. Run compiler
+7. Record all run-time errors (nullpointer, etc.)
+
+# Finished / working on
+Auto-Filler
+- paranthesis open and close //applies to indiv lines
+- brackets open and close //applies to indiv lines
+- make sure there are only one { and/or 1 } per line
+
+# TODO
+1. Take a picture
+2. Run OCR on picture
+3. Run JVM
+4. Run javac
+5. Make a good UI

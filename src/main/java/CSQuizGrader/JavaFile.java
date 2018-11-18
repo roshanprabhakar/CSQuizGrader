@@ -1,7 +1,6 @@
 package CSQuizGrader;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class JavaFile {
@@ -40,7 +39,14 @@ public class JavaFile {
     public ArrayList<String> fixClassSyntax() {
         ArrayList<String> fixedCode = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
+
         for (int i = 0; i < javaFile.size(); i++) {
+            javaFile.set(i, updateClosedParenthesis(javaFile.get(i)));
+        }
+
+        for (int i = 0; i < javaFile.size(); i++) {
+
+            System.out.println(i);
             int indexOfSpace = 0;
 
             int numOpenParenthesis = countOpenParenthesis(javaFile.get(i));
@@ -52,18 +58,8 @@ public class JavaFile {
                     indexOfSpace = j + 1;
                 }
             }
-
-            for (int j = 0; j < words.size(); j++) {
-                if (words.get(j).contains("{")) {
-                    words.set(j, removeClosedBraces(words.get(j)));
-                }
-            }
-
-            while (numClosedParenthesis < numOpenParenthesis) {
-                words.add(")");
-                numClosedParenthesis++;
-            }
-
+            words.add(javaFile.get(i).substring(indexOfSpace));
+            System.out.println(words);
 
             //words has the individual words from each line of code
             if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected") ||
@@ -86,53 +82,20 @@ public class JavaFile {
         return fixedCode;
     }
 
-    private String removeClosedBraces(String str) {
-        String newString = "";
-        for (int i = 0; i < str.length(); i++) {
-            if (!str.substring(i, i + 1).equals("{")) {
-                newString += str.substring(i, i + 1);
-            }
-        }
-        return newString.trim();
-    }
-
-    private String addClosedParenthesis(String line) {
-        int parenthesisNeeded = 0;
-        for (int i = 0; i < line.length(); i++) {
-            if (line.charAt(i) == '(') {
-                parenthesisNeeded++;
-            } else if (line.charAt(i) == ')') {
-                parenthesisNeeded--;
-            }
-        }
-        for (int i = 0; i < parenthesisNeeded; i++) {
-            line += ")";
-        }
-        return line;
-    }
-
     private int countOpenParenthesis(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '(') {
+            if (str.charAt(i) == '{') {
                 count++;
             }
         }
         return count;
     }
 
-    private String reverseString(String str) {
-        String newString = "";
-        for (int i = str.length() - 1; i >= 0; i--) {
-            newString += str.substring(i, i + 1);
-        }
-        return newString;
-    }
-
     private int countClosedParenthesis(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ')') {
+            if (str.charAt(i) == '}') {
                 count++;
             }
         }
@@ -153,6 +116,86 @@ public class JavaFile {
         for (int i = 0; i < closedBracesNeeded; i++) {
             fixedCode.add("}");
         }
+    }
+
+    private boolean hasOnlySpaces(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) != ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private String updateClosedParenthesis(String line) {
+
+        String lineCopy = line;
+        line = removeCharacter(line, ';');
+        line = removeCharacter(line, '{');
+
+        line = line.trim();
+
+        if (hasOnlySpaces(line)) {
+            return lineCopy;
+        }
+
+        int openParenthesisCount = 0;
+        int closedParenthesisCount = 0;
+
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == '(') {
+                openParenthesisCount++;
+            }
+        }
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == ')') {
+                closedParenthesisCount++;
+            }
+        }
+
+        if (openParenthesisCount > closedParenthesisCount) {
+            for (int i = 0; i < openParenthesisCount - closedParenthesisCount; i++) {
+                line += ')';
+            }
+
+        } else {
+            for (int i = 0; i < closedParenthesisCount - openParenthesisCount; i++) {
+                line = removeOneInstanceOfCharacterFromEnd(line, ')');
+            }
+        }
+        return line;
+    }
+
+    private String removeOneInstanceOfCharacterFromEnd(String line, Character character) {
+        String output = "";
+        int count = 0;
+        for (int i = line.length() - 1; i >= 0; i--) {
+            if (line.charAt(i) == character && count < 1) {
+                count++;
+            } else {
+                output += line.charAt(i);
+            }
+        }
+        output = reverse(output);
+        return output;
+    }
+
+    private String reverse(String str) {
+        String newString = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            newString += str.substring(i, i + 1);
+        }
+        return newString;
+    }
+
+    private String removeCharacter(String line, char character) {
+        String output = "";
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) != character) {
+                output += line.charAt(i);
+            }
+        }
+        return output;
     }
 
     private String concatenateList(ArrayList<String> list) {
