@@ -1,17 +1,12 @@
 package CSQuizGrader;
 
-import jdk.nashorn.internal.runtime.ECMAException;
-
 import javax.tools.*;
 import java.io.*;
-import java.nio.Buffer;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 public class Compiler {
 
     private final String FILE_NAME;
-    private final String FILE_TO_COMPILE_PATH;
     private final String separator = File.separator;
     private final JavaCompiler COMPILER = ToolProvider.getSystemJavaCompiler();
     private final File JAVA_FILE;
@@ -21,7 +16,6 @@ public class Compiler {
        this.FILE_NAME = FILE_NAME;
        File file = new File("src" + separator + "TextSources" + separator + FILE_NAME + ".txt");
        file = changeExtension(file, ".java");
-       this.FILE_TO_COMPILE_PATH = file.getAbsolutePath();
        this.JAVA_FILE = file;
        this.TEXT_FILE = new File("src" + separator + "TextSources" + separator + FILE_NAME + ".txt");
        if (!file.exists()) {
@@ -32,7 +26,9 @@ public class Compiler {
     public void compile() throws IOException, FileNotFoundException {
         copyContentsFromFileToFile(TEXT_FILE, JAVA_FILE);
         int compilationResult =	COMPILER.run(null, null, null, JAVA_FILE.getAbsolutePath());
-        System.out.println(compilationResult);
+        if (compilationResult == 0) {
+            System.out.println("error count: 0");
+        }
     }
 
     private void copyContentsFromFileToFile(File file1, File file2) {
