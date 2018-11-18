@@ -44,18 +44,21 @@ public class Collections {
                 compiler.compile();
 
                 System.out.println("Running synthetic JVM...");
+                System.out.println("***** File Output *****");
                 SyntheticJVM syntheticJVM = new SyntheticJVM(name.substring(0, name.indexOf(".")));
                 syntheticJVM.run();
                 for (int j = 0; j < syntheticJVM.getERROR_LOG().size(); j++) {
                     universalERR_LOG.add(syntheticJVM.getERROR_LOG().get(j));
                 }
 
-                System.out.println("Most frequent errors: ");
-                System.out.println(universalERR_LOG.getTopMostFreq());
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        System.out.println();
+        System.out.println("----- CLASS SUMMARY -----");
+        System.out.println("Top 5 Most frequent errors: ");
+        System.out.println(universalERR_LOG.getTopMostFreq());
     }
 }
