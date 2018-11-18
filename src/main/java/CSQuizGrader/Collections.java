@@ -25,6 +25,8 @@ public class Collections {
         for (int i = 0; i < TextFiles.size(); i++) {
             name = TextFiles.get(i).getName();
             System.out.println();
+            System.out.println();
+            System.out.println();
             System.out.println("►►►►►►►►►► File " + (i + 1) + ": " + name + " ◄◄◄◄◄◄◄◄◄◄");
             try {
                 JavaFile jf = new JavaFile("src/TextSources/" + name.substring(0, name.indexOf(".")) + ".txt", name.substring(0, name.indexOf(".")) + ".txt");
