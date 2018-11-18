@@ -25,26 +25,26 @@ public class Collections {
         for (int i = 0; i < TextFiles.size(); i++) {
             name = TextFiles.get(i).getName();
             System.out.println();
-            System.out.println("------- File " + (i + 1) + ": " + name + "-------");
+            System.out.println("►►►►►►►►►► File " + (i + 1) + ": " + name + " ◄◄◄◄◄◄◄◄◄◄");
             try {
                 JavaFile jf = new JavaFile("src/TextSources/" + name.substring(0, name.indexOf(".")) + ".txt", name.substring(0, name.indexOf(".")) + ".txt");
                 Compiler compiler = new Compiler(name.substring(0, name.indexOf(".")));
 
-                System.out.println("Compile-time Errors: ");
+                System.out.println("\n► Compile-time Errors: ");
                 compiler.compile();
 
                 jf.updateJavaFile(jf.fixClassSyntax());
                 for (int j = 0; j < jf.getERROR_LOG().size(); j++) {
                     universalERR_LOG.add(jf.getERROR_LOG().get(j).substring(0, jf.getERROR_LOG().get(j).indexOf(" at")));
                 }
-                System.out.println("ERROR_LOG: ");
+                System.out.println("\n► ERROR_LOG");
                 System.out.println(jf.getERROR_LOG());
 
-                System.out.println("Fixing errors if applicable ...");
+                System.out.println("\n► Fixing errors if applicable ...");
                 compiler.compile();
 
-                System.out.println("Running synthetic JVM...");
-                System.out.println("***** File Output *****");
+                System.out.println("► Running synthetic JVM...");
+                System.out.println("\n----- File Output -----");
                 SyntheticJVM syntheticJVM = new SyntheticJVM(name.substring(0, name.indexOf(".")));
                 syntheticJVM.run();
                 for (int j = 0; j < syntheticJVM.getERROR_LOG().size(); j++) {
@@ -57,8 +57,13 @@ public class Collections {
         }
 
         System.out.println();
-        System.out.println("----- CLASS SUMMARY -----");
-        System.out.println("Top 5 Most frequent errors: ");
-        System.out.println(universalERR_LOG.getTopMostFreq());
+        System.out.println("-------------------- CLASS SUMMARY --------------------");
+        System.out.println("\n►►► Top 5 Most frequent errors: ");
+        for (int i = 0; i < universalERR_LOG.getTopMostFreq().size(); i++) {
+            System.out.println("\t" + (i + 1) + ")\t" + universalERR_LOG.getTopMostFreq().get(i));
+        }
+        System.out.print("\n►►► Average Number of Errors Per Person: ");
+        System.out.printf("%.2f", (double) (universalERR_LOG.size()) / TextFiles.size());
+        System.out.println("\n\n-------------------------------------------------------");
     }
 }
