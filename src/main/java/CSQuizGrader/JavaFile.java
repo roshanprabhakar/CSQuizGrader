@@ -4,8 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class JavaFile {
+
     public ArrayList<String> javaFile = new ArrayList<>();
     private ArrayList<String> ERROR_LOG = new ArrayList<>();
+
+    String separator = java.io.File.separator;
     String fileName;
 
     public JavaFile(String filepath, String fileName) {
@@ -23,7 +26,7 @@ public class JavaFile {
 
     public void updateJavaFile(ArrayList<String> args) {
         try {
-            File correctedArgs = new File("src/TextSources/" + fileName);
+            File correctedArgs = new File("src" + separator + "TextSources" + separator + fileName);
             BufferedWriter bw = new BufferedWriter(new FileWriter(correctedArgs.getAbsolutePath()));
 
             for (String line : args) {
@@ -36,7 +39,7 @@ public class JavaFile {
         }
     }
 
-    public ArrayList<String> fixClassSyntax() {
+     public ArrayList<String> fixClassSyntax() {
         ArrayList<String> fixedCode = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
 

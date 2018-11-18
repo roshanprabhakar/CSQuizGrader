@@ -1,16 +1,24 @@
 package CSQuizGrader;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        JavaFile jf = new JavaFile("src/TextSources/HelloWorld.txt", "HelloWorld.txt");
+    public static void main(String[] args) throws IOException {
+        try {
+            JavaFile jf = new JavaFile("src/TextSources/HelloWorld.txt", "HelloWorld.txt");
+    //      ArrayList<String> correctedArguments = jf.fixClassSyntax();
+    //      jf.updateJavaFile(correctedArguments);
 
-        ArrayList<String> correctedArguments = jf.fixClassSyntax();
+            Compiler compiler = new Compiler("HelloWorld");
+            compiler.compile();
 
-        System.out.println(jf.getERROR_LOG());
-        System.out.println(correctedArguments);
-        jf.updateJavaFile(correctedArguments);
+            jf.updateJavaFile(jf.fixClassSyntax());
+            System.out.println("");
 
+            compiler.compile();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
