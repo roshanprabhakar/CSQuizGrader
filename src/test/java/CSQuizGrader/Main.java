@@ -8,7 +8,7 @@ public class Main {
 
         ArrayList<String> correctedArguments = jf.fixClassSyntax();
 
-        System.out.println(jf.getErrorLog());
+        System.out.println(jf.getERROR_LOG());
         System.out.println(correctedArguments);
         jf.updateJavaFile(correctedArguments);
 
