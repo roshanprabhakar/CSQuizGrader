@@ -1,6 +1,5 @@
 package CSQuizGrader;
 
-import javax.xml.soap.Text;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,18 +27,6 @@ public class Collections {
 
             name = TextFiles.get(i).getName();
 
-            try {
-                OCRstatsLib statslib = new OCRstatsLib("src" + separator + "OCRInputs" + separator + TextFiles.get(i).getName());
-                if (!new File("src" + separator + "TextSources" + separator + TextFiles.get(i).getName()).exists()) {
-                    new File("src" + separator + "TextSources" + separator + TextFiles.get(i).getName()).createNewFile();
-                }
-                System.out.println("src" + separator + "TextSources" + separator + TextFiles.get(i).getName());
-                statslib.writeFormatted(new File("src" + separator + "TextSources" + separator + TextFiles.get(i).getName()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println();
             System.out.println();
             System.out.println();
             System.out.println("►►►►►►►►►► File " + (i + 1) + ": " + name + " ◄◄◄◄◄◄◄◄◄◄");
