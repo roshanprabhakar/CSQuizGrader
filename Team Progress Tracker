@@ -14,7 +14,10 @@ Auto-Filler //done
 - make sure there are only one { and/or 1 } per line //done
 javac //done
 jvm
-ocr
+- record runtime errors
+- dont strip semicolons if loop
+ocr //done
+format ocr input
 take a picture
 
 # TODO

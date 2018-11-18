@@ -2,7 +2,6 @@ package CSQuizGrader;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Collections {
 
@@ -47,7 +46,12 @@ public class Collections {
                 System.out.println("Running synthetic JVM...");
                 SyntheticJVM syntheticJVM = new SyntheticJVM(name.substring(0, name.indexOf(".")));
                 syntheticJVM.run();
-                System.out.println(universalERR_LOG.getTopMostFreq());
+                for (int j = 0; j < syntheticJVM.getERROR_LOG().size(); j++) {
+                    universalERR_LOG.add(syntheticJVM.getERROR_LOG().get(j));
+                }
+
+                System.out.println("Most frequent errors: ");
+                System.out.println(universalERR_LOG.getMostFreq());
 
             } catch (Exception e) {
                 e.printStackTrace();
