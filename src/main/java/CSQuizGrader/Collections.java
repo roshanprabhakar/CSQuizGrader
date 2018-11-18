@@ -40,9 +40,9 @@ public class Collections {
                 System.out.println("Fixing errors if applicable ...");
                 compiler.compile();
 
-//            System.out.println("Running synthetic JVM...");
-//            SyntheticJVM syntheticJVM = new SyntheticJVM("HelloWorld");
-//            syntheticJVM.run();
+                System.out.println("Running synthetic JVM...");
+                SyntheticJVM syntheticJVM = new SyntheticJVM(name.substring(0, name.indexOf(".")));
+                syntheticJVM.run();
 
             } catch (Exception e) {
                 e.printStackTrace();

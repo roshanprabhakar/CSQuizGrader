@@ -14,30 +14,27 @@ public class SyntheticJVM {
 
     public void run() {
         try {
-            System.out.println("**********");
             runProcess(("javac -cp src src" + separator + "TextSources" + separator + FILE_NAME + ".java"));
-            System.out.println("**********");
-            runProcess(("java -cp src" + separator + "TextSources" + separator + FILE_NAME + " " + FILE_NAME));
+            runProcess(("java -cp src" + separator + "TextSources" + separator + " " + FILE_NAME));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void printLines(String cmd, InputStream ins) throws Exception {
+    private static void printLines(InputStream ins) throws Exception {
         String line;
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println(cmd + " " + line);
+            System.out.println("***** File output *****\n" + line);
         }
     }
 
     private static void runProcess(String command) throws Exception {
         Process pro = Runtime.getRuntime().exec(command);
-        printLines(command + " stdout:", pro.getInputStream());
-        printLines(command + " stderr:", pro.getErrorStream());
+        printLines(pro.getInputStream());
+        printLines(pro.getErrorStream());
         pro.waitFor();
-        System.out.println(command + " exitValue() " + pro.exitValue());
     }
 
 }
