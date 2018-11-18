@@ -82,13 +82,18 @@ public class JavaFile {
         }
         for (int i = 0; i < closedBracesNeeded; i++) {
             fixedCode.add("}");
+            errorLog.add("missing closed brace");
         }
     }
 
     private String concatenateList(ArrayList<String> list) {
         String output = "";
-        for (String str : list) {
-            output += str + " ";
+        for (int i = 0; i < list.size(); i++) {
+            if (i == list.size() - 1) {
+                output += list.get(i);
+            } else {
+                output += list.get(i) + " ";
+            }
         }
         return output;
     }
