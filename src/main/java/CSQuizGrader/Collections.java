@@ -2,11 +2,11 @@ package CSQuizGrader;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Collections {
 
     private final String separator = File.separator;
+    private ArrayList<String> TotalArrayList = new ArrayList<String>();
 
     private File TextSources = new File("src" + separator + "TextSources");
     private ArrayList<File> TextFiles = new ArrayList<>();
