@@ -39,21 +39,17 @@ public class JavaFile {
         }
     }
 
-     public ArrayList<String> fixClassSyntax() {
+    public ArrayList<String> fixClassSyntax() {
         ArrayList<String> fixedCode = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
 
-        int changeInBraces;
-        int changeInSemicolons;
-        int changeInParentheses;
-        int changeInSquareBrackets;
-
+        int changeInBraces, changeInSemicolons, changeInParentheses, changeInSquareBrackets, changeInLines = 0;
         for (int i = 0; i < javaFile.size(); i++) {
             changeInBraces = getCountOfChar(javaFile.get(i), "{");
             changeInSemicolons = getCountOfChar(javaFile.get(i), ";");
             changeInParentheses = getCountOfChar(javaFile.get(i), ")");
             changeInSquareBrackets = getCountOfChar(javaFile.get(i), "]");
-
+            changeInLines = javaFile.size();
 
             javaFile.set(i, updateClosedParenthesis(javaFile.get(i)));
             javaFile.set(i, updateSquareBrackets(javaFile.get(i)));
@@ -77,10 +73,12 @@ public class JavaFile {
             } else if (words.get(words.size() - 1).charAt(words.get(words.size() - 1).length() - 1) != ';') {
                 words.add(";");
             }
-            //add appropriate "}" to end of file
 
             changeInBraces = getCountOfChar(concatenateList(words), "{") - changeInBraces;
             changeInSemicolons = getCountOfChar(concatenateList(words), ";") - changeInSemicolons;
+            if (words.contains("}") && words.contains(";")) {
+                changeInSemicolons = 0;
+            }
             changeInParentheses = getCountOfChar(concatenateList(words), ")") - changeInParentheses;
             changeInSquareBrackets = getCountOfChar(concatenateList(words), "]") - changeInSquareBrackets;
 
@@ -92,17 +90,27 @@ public class JavaFile {
             fixedCode.add(concatenateList(words));
             words.clear();
         }
-        //fix closed braces
+
         addClosedBraces(fixedCode);
+        int newNumLines = fixedCode.size();
+        changeInLines = fixedCode.size() - changeInLines;
+        addToErrorLog(changeInLines, "\n", newNumLines + 1);
+
         return fixedCode;
     }
 
     public void addToErrorLog(int change, String character, int lineNum) {
-        for (int j = 0; j < change; j++) {
-            ERROR_LOG.add("missing \"" + character + "\" at line: " + (lineNum + 1));
-        }
-        for(int j = 0; j > change; j--){
-            ERROR_LOG.add("extra \"" + character + "\" at line: " + (lineNum + 1));
+        if (character.equals("\n")) {
+            for (int i = lineNum - change; i < lineNum; i++) {
+                ERROR_LOG.add("missing } at line: " + i);
+            }
+        } else {
+            for (int j = 0; j < change; j++) {
+                ERROR_LOG.add("missing \"" + character + "\" at line: " + (lineNum + 1));
+            }
+            for (int j = 0; j > change; j--) {
+                ERROR_LOG.add("extra \"" + character + "\" at line: " + (lineNum + 1));
+            }
         }
     }
 
@@ -262,7 +270,8 @@ public class JavaFile {
     }
 
     public ArrayList<String> getERROR_LOG() {
-        //need to get rid of repeated
         return this.ERROR_LOG;
     }
 }
+
+
