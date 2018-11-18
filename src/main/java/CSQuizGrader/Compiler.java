@@ -23,7 +23,7 @@ public class Compiler {
        }
     }
 
-    public void compile() throws IOException, FileNotFoundException {
+    public void compile() {
         copyContentsFromFileToFile(TEXT_FILE, JAVA_FILE);
         int compilationResult =	COMPILER.run(null, null, null, JAVA_FILE.getAbsolutePath());
         if (compilationResult == 0) {

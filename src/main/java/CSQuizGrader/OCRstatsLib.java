@@ -1,8 +1,6 @@
 package CSQuizGrader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class OCRstatsLib {
@@ -15,15 +13,41 @@ public class OCRstatsLib {
         unFormattedOCRInput = new File(filepath);
     }
 
-    public ArrayList<String> formattedCode(String string) {
+    public void writeFormatted(File outputFile) {
+        try {
+            String data = getUnformattedData();
+            ArrayList<String> formattedCode = formattedCode(data);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile));
+            for (String line : formattedCode) {
+                bw.write(line);
+            }
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ArrayList<String> formattedCode(String string) {
         ArrayList<String> lines = new ArrayList<>();
         String counter = "";
-        for (int i = 0; i < string.length(); i++) {
+        int lastLineIndex = 0;
+        for (int i = 0; i < string.length() - 1; i++) {
             if (string.charAt(i) != ';' && string.charAt(i) != '{' && string.charAt(i) != '}') {
                 counter += string.charAt(i);
-            } else {
-                lines.add(counter);
+            } else if (string.charAt(i) == '}' && string.charAt(i + 1) == ';') {
+                counter += string.charAt(i);
+                counter += string.charAt(i + 1);
+                lines.add(counter + "\n");
+                lastLineIndex = i + 2;
+                i++;
                 counter = "";
+            } else if (!string.substring(lastLineIndex, lastLineIndex + 3).equals("for")) {
+                counter += string.charAt(i);
+                lines.add(counter + "\n");
+                counter = "";
+                lastLineIndex = i + 1;
+            } else {
+                counter += string.charAt(i);
             }
         }
         return lines;
