@@ -17,6 +17,7 @@ public class SyntheticJVM {
     }
 
     public void run() {
+        System.out.println("***** File output Line *****");
         try {
             runProcess(("javac -cp src src" + separator + "TextSources" + separator + FILE_NAME + ".java"));
             runProcess(("java -cp src" + separator + "TextSources" + separator + " " + FILE_NAME));
@@ -30,7 +31,7 @@ public class SyntheticJVM {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println("***** File output Line *****\n" + line);
+            System.out.println(line);
             if (line.contains("Exception"))
                 ERROR_LOG.add(line.substring(line.indexOf("java"), line.indexOf(":")));
         }

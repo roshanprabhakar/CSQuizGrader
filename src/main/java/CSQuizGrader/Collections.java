@@ -51,7 +51,7 @@ public class Collections {
                 }
 
                 System.out.println("Most frequent errors: ");
-                System.out.println(universalERR_LOG.getMostFreq());
+                System.out.println(universalERR_LOG.getTopMostFreq());
 
             } catch (Exception e) {
                 e.printStackTrace();
