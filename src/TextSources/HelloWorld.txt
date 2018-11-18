@@ -1,7 +1,7 @@
 public class HelloWorld {
-public static void main(String args) {
+public static void main(String[] args) {
 if (true) {
-System.out.println("Hello World") ;
+System.out.println("This Works") ;
 } ;
-}
-}
+} ;
+} ;
