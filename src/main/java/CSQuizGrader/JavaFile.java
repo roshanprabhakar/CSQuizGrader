@@ -152,7 +152,13 @@ public class JavaFile {
     private String updateClosedParenthesis(String line) {
         String lineCopy = line;
         line = removeCharacter(line, "{");
-        line = removeCharacter(line, ";");
+        if (line.length() > 3) {
+            if (!line.substring(0, 3).equals("for")) {
+                line = removeCharacter(line, ";");
+            }
+        } else {
+            line = removeCharacter(line, ";");
+        }
 
         line = line.trim();
 
@@ -190,7 +196,13 @@ public class JavaFile {
     private String updateSquareBrackets(String line) {
         String lineCopy = line;
         line = removeCharacter(line, "{");
-        line = removeCharacter(line, ";");
+        if (line.length() > 3) {
+            if (!line.substring(0, 3).equals("for")) {
+                line = removeCharacter(line, ";");
+            }
+        } else {
+            line = removeCharacter(line, ";");
+        }
 
         line = line.trim();
 
