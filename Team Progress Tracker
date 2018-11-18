@@ -13,7 +13,9 @@ Auto-Filler //done
 - brackets open and close //applies to indiv lines
 - make sure there are only one { and/or 1 } per line //done
 javac //done
-jvm //done
+jvm
+- record runtime errors
+- dont strip semicolons if loop
 ocr //done
 format ocr input
 take a picture

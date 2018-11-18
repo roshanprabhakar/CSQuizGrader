@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Collections {
 
     private final String separator = File.separator;
-    private ArrayList<String> TotalArrayList = new ArrayList<String>();
+    private ArrayList<String> UniversalErrorLog = new ArrayList<>();
 
     private File TextSources = new File("src" + separator + "TextSources");
     private ArrayList<File> TextFiles = new ArrayList<>();
@@ -36,6 +36,11 @@ public class Collections {
                 jf.updateJavaFile(jf.fixClassSyntax());
                 System.out.println("ERROR_LOG: ");
                 System.out.println(jf.getERROR_LOG());
+
+                //update universal error log
+                for (String error : jf.getERROR_LOG()) {
+                    UniversalErrorLog.add(error);
+                }
 
                 System.out.println("Fixing errors if applicable ...");
                 compiler.compile();
