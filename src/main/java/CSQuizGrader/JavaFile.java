@@ -87,8 +87,12 @@ public class JavaFile {
 
     private String concatenateList(ArrayList<String> list) {
         String output = "";
-        for (String str : list) {
-            output += str + " ";
+        for (int i = 0; i < list.size(); i++) {
+            String str = list.get(i);
+            output += str;
+            if (i < list.size() - 1) {
+                output += " ";
+            }
         }
         return output;
     }
