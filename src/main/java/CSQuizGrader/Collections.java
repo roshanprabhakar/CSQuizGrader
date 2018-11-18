@@ -62,5 +62,6 @@ public class Collections {
         System.out.println(universalERR_LOG.getTopMostFreq());
         System.out.print("Average Number of Errors Per Person: ");
         System.out.printf("%.2f", (double) (universalERR_LOG.size()) / TextFiles.size());
+        System.out.println();
     }
 }
