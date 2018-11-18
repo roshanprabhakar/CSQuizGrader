@@ -30,9 +30,10 @@ public class SyntheticJVM {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println("***** File output Line *****\n" + line);
-            if (line.contains("Exception"))
+            System.out.println(line);
+            if (line.contains("Exception")) {
                 ERROR_LOG.add(line.substring(line.indexOf("java"), line.indexOf(":")));
+            }
         }
     }
 
