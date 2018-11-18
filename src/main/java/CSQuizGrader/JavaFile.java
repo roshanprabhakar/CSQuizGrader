@@ -47,12 +47,12 @@ public class JavaFile {
         for (int i = 0; i < javaFile.size(); i++) {
             changeInBraces = getCountOfChar(javaFile.get(i), "{");
             changeInSemicolons = getCountOfChar(javaFile.get(i), ";");
-            changeInParentheses = getCountOfChar(javaFile.get(i), ")");
             changeInSquareBrackets = getCountOfChar(javaFile.get(i), "]");
+            changeInParentheses = getCountOfChar(javaFile.get(i), ")");
             changeInLines = javaFile.size();
 
-            javaFile.set(i, updateClosedParenthesis(javaFile.get(i)));
             javaFile.set(i, updateSquareBrackets(javaFile.get(i)));
+            javaFile.set(i, updateClosedParenthesis(javaFile.get(i)));
 
             int indexOfSpace = 0;
 
@@ -79,13 +79,14 @@ public class JavaFile {
             if (words.contains("}") && words.contains(";")) {
                 changeInSemicolons = 0;
             }
-            changeInParentheses = getCountOfChar(concatenateList(words), ")") - changeInParentheses;
+
             changeInSquareBrackets = getCountOfChar(concatenateList(words), "]") - changeInSquareBrackets;
+            changeInParentheses = getCountOfChar(concatenateList(words), ")") - changeInParentheses;
 
             addToErrorLog(changeInBraces, "{", i);
             addToErrorLog(changeInSemicolons, ";", i);
-            addToErrorLog(changeInParentheses, ")", i);
             addToErrorLog(changeInSquareBrackets, "]", i);
+            addToErrorLog(changeInParentheses, ")", i);
 
             fixedCode.add(concatenateList(words));
             words.clear();
