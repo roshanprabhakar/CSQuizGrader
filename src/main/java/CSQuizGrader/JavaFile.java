@@ -42,6 +42,10 @@ public class JavaFile {
         ArrayList<String> words = new ArrayList<>();
         for (int i = 0; i < javaFile.size(); i++) {
             int indexOfSpace = 0;
+
+            int numOpenParenthesis = countOpenParenthesis(javaFile.get(i));
+            int numClosedParenthesis = countClosedParenthesis(javaFile.get(i));
+
             for (int j = 0; j < javaFile.get(i).length(); j++) { //split each among the spaces
                 if (javaFile.get(i).substring(j, j + 1).equals(" ")) {
                     words.add(javaFile.get(i).substring(indexOfSpace, j));
@@ -67,6 +71,26 @@ public class JavaFile {
         //fix closed braces
         addClosedBraces(fixedCode);
         return fixedCode;
+    }
+
+    private int countOpenParenthesis(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '{') {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int countClosedParenthesis(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '}') {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void addClosedBraces(ArrayList<String> fixedCode) {
