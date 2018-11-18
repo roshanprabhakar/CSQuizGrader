@@ -52,6 +52,19 @@ public class JavaFile {
                     indexOfSpace = j + 1;
                 }
             }
+
+            for (int j = 0; j < words.size(); j++) {
+                if (words.get(j).contains("{")) {
+                    words.set(j, removeClosedBraces(words.get(j)));
+                }
+            }
+
+            while (numClosedParenthesis < numOpenParenthesis) {
+                words.add(")");
+                numClosedParenthesis++;
+            }
+
+
             //words has the individual words from each line of code
             if (words.get(0).equals("public") || words.get(0).equals("private") || words.get(0).equals("protected") ||
                     words.get(0).equals("for") || words.get(0).equals("while") || words.get(0).equals("if")) {
@@ -73,20 +86,53 @@ public class JavaFile {
         return fixedCode;
     }
 
+    private String removeClosedBraces(String str) {
+        String newString = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (!str.substring(i, i + 1).equals("{")) {
+                newString += str.substring(i, i + 1);
+            }
+        }
+        return newString.trim();
+    }
+
+    private String addClosedParenthesis(String line) {
+        int parenthesisNeeded = 0;
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == '(') {
+                parenthesisNeeded++;
+            } else if (line.charAt(i) == ')') {
+                parenthesisNeeded--;
+            }
+        }
+        for (int i = 0; i < parenthesisNeeded; i++) {
+            line += ")";
+        }
+        return line;
+    }
+
     private int countOpenParenthesis(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '{') {
+            if (str.charAt(i) == '(') {
                 count++;
             }
         }
         return count;
     }
 
+    private String reverseString(String str) {
+        String newString = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            newString += str.substring(i, i + 1);
+        }
+        return newString;
+    }
+
     private int countClosedParenthesis(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '}') {
+            if (str.charAt(i) == ')') {
                 count++;
             }
         }
