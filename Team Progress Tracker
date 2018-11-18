@@ -5,17 +5,21 @@
 4. Record Syntax errors (missing semicolon, etc.)
 5. Smart fix syntax errors
 6. Run compiler
-7. Record all run-time errors (nullpointer, etc.)
+7. Record all run-time errors (null pointer, etc.)
 
 # Finished / working on
-Auto-Filler
-- paranthesis open and close //applies to indiv lines
+Auto-Filler //done
+- parenthesis open and close //applies to indiv lines
 - brackets open and close //applies to indiv lines
-- make sure there are only one { and/or 1 } per line
+- make sure there are only one { and/or 1 } per line //done
+javac //done
+jvm
+ocr
+take a picture
 
 # TODO
 1. Take a picture
 2. Run OCR on picture
 3. Run JVM
-4. Run javac
+4. Run javac //done
 5. Make a good UI

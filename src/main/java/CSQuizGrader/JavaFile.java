@@ -187,7 +187,6 @@ public class JavaFile {
     }
 
     public ArrayList<String> getErrorLog() {
-        //need to get rid of repeated
         return this.ERROR_LOG;
     }
 }
