@@ -26,7 +26,7 @@ public class SyntheticJVM {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println("***** File output *****\n" + line);
+            System.out.println("***** File output Line *****\n" + line);
         }
     }
 
