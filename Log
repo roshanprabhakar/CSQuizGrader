@@ -26,3 +26,15 @@ take a picture
 3. Run JVM
 4. Run javac //done
 5. Make a good UI
+
+# --- END HACKATHON ---
+For DDobervich:
+Algorithm:
+1. display one test with no answered questions (plain test)
+2. ddobercich drags cursor across all places that answers will be marked
+  - first dragging is for first answer
+  - second dragging is for second answer
+  - etc
+3. Loop through all answer regions, display each with a textbox for comments
+4. After looped through all pages, generate a class report with all the problems and corresponding comments
+5. generate individual reports
