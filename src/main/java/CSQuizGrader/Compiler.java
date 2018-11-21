@@ -27,7 +27,7 @@ public class Compiler {
         copyContentsFromFileToFile(TEXT_FILE, JAVA_FILE);
         int compilationResult =	COMPILER.run(null, null, null, JAVA_FILE.getAbsolutePath());
         if (compilationResult == 0) {
-            System.out.println("error count: 0");
+            System.out.println("Compilation successful");
         }
     }
 

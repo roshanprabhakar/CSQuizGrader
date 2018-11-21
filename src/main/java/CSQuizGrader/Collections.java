@@ -66,7 +66,7 @@ public class Collections {
         for (int i = 0; i < universalERR_LOG.getTopMostFreq().size(); i++) {
             System.out.println("\t" + (i + 1) + ")\t" + universalERR_LOG.getTopMostFreq().get(i));
         }
-        System.out.print("\n►►► Average Number of Errors Per Person: ");
+        System.out.print("\n►►► Average Number of Errors Per Entry: ");
         System.out.printf("%.2f", (double) (universalERR_LOG.size()) / TextFiles.size());
         System.out.println("\n\n-------------------------------------------------------");
     }
