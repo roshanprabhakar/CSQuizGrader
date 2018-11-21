@@ -1,5 +1,7 @@
 package CSQuizGrader;
 
+import UserInteractiveGrader.UserInteractiveGrading;
+
 public class Main {
     public static void main(String[] args) {
 //        runCollectionsAnalysis();
@@ -7,12 +9,17 @@ public class Main {
     }
 
     public static void userInteractiveGradingSystem() {
-        try {
-            UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
-            userInteractiveGrading.printPartOfScreen(100,100,500,500);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
+        userInteractiveGrading.displayImageFromFile("testingImg1.jpg");
+
+
+    //        try {
+    //            UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
+    //            userInteractiveGrading.printLocalizedPartOfScreen(100,100,500,500);
+    //        } catch (Exception e) {
+    //            e.printStackTrace();
+    //        }
 
     }
 
