@@ -23,7 +23,7 @@ public class Main {
      */
     public static void userInteractiveGradingSystem() {
         EasyImage easyImage = new EasyImage("blankTest.jpg");
-        easyImage.display();
+        easyImage.display(easyImage.resize());
     }
 
     public static void runCollectionsAnalysis() {
