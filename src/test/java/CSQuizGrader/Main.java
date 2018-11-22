@@ -2,6 +2,8 @@ package CSQuizGrader;
 
 import UserInteractiveGrader.EasyImage;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
 //        runCollectionsAnalysis();
@@ -23,7 +25,7 @@ public class Main {
      */
     public static void userInteractiveGradingSystem() {
         EasyImage easyImage = new EasyImage("blankTest.jpg");
-        easyImage.display(easyImage.resize());
+        easyImage.display(easyImage.scaleImage(400, 500)); //random numbers to test
     }
 
     public static void runCollectionsAnalysis() {

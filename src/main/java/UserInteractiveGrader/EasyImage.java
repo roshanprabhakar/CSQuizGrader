@@ -7,16 +7,20 @@ import java.io.File;
 public class EasyImage {
 
     private static final String separator = File.separator;
+    private JFrame frame;
+    private JLabel label;
     String path;
+
 
     public EasyImage(String name) {
         this.path = "src" + separator + "ScannedImageSources" + separator + name;
+        this.frame = new JFrame();
+        this.label = new JLabel();
     }
 
     public void display() {
-        JFrame frame = new JFrame();
         ImageIcon icon = new ImageIcon(path);
-        JLabel label = new JLabel(icon);
+        label = new JLabel(icon);
         frame.add(label);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -24,20 +28,31 @@ public class EasyImage {
     }
 
     public void display(ImageIcon icon) {
-        JFrame frame = new JFrame();
-        ImageIcon imageIcon = resize();
-        JLabel label = new JLabel(icon);
+        label = new JLabel(icon);
         frame.add(label);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
-    public ImageIcon resize() {
-        ImageIcon imageIcon = new ImageIcon("./img/imageName.png"); // load the image to a imageIcon
-        Image image = imageIcon.getImage(); // transform it
-        Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        imageIcon = new ImageIcon(newimg);  // transform it back
-        return imageIcon;
+    public ImageIcon scaleImage(int w, int h) {
+
+        ImageIcon icon = new ImageIcon(path);
+
+        int nw = icon.getIconWidth();
+        int nh = icon.getIconHeight();
+
+        if (icon.getIconWidth() > w) {
+            nw = w;
+            nh = (nw * icon.getIconHeight()) / icon.getIconWidth();
+        }
+
+        if (nh > h) {
+            nh = h;
+            nw = (icon.getIconWidth() * nh) / icon.getIconHeight();
+        }
+
+        return new ImageIcon(icon.getImage().getScaledInstance(nw, nh, Image.SCALE_DEFAULT));
     }
+
 }
