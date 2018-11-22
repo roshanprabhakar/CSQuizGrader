@@ -1,6 +1,7 @@
 package CSQuizGrader;
 
 import UserInteractiveGrader.EasyImage;
+import UserInteractiveGrader.UserInteractiveGrading;
 
 import javax.swing.*;
 
@@ -24,8 +25,11 @@ public class Main {
      * 7. send these scores through email
      */
     public static void userInteractiveGradingSystem() {
-        EasyImage easyImage = new EasyImage("blankTest.jpg");
-        easyImage.display(easyImage.scaleImage(400, 500)); //random numbers to test
+
+        UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
+
+//        EasyImage easyImage = new EasyImage("blankTest.jpg");
+//        easyImage.display(easyImage.scaleImage(400, 500)); //random numbers to test
     }
 
     public static void runCollectionsAnalysis() {

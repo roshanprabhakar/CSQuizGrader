@@ -9,11 +9,11 @@ import CSQuizGrader.*;
 
 public class UserInteractiveGrading {
 
-    private final String ALPHABET = "abcdefghijklmnopqrstuvwxyz"; //to auto-generate file names
     private final String separator = File.separator;
 
-    public void displayImageFromFile(String filename) {
-        //complete this
+    public void findBoundsFromMouse() {
+        //allows the user to drag a box on screen to find start and end x coordinates
+
     }
 
     public void printLocalizedPartOfScreen(int topLeftX, int topLeftY, int height, int width) {
@@ -33,15 +33,6 @@ public class UserInteractiveGrading {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    //Random generate name for file
-    private String generateRandomName(int length) {
-        String output = "";
-        for (int i = 0; i < length; i++) {
-            output += ALPHABET.substring((int) Math.random() * ALPHABET.length());
-        }
-        return output;
     }
 
     private int getMouseX() {
