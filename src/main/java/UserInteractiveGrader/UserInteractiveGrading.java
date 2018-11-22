@@ -43,4 +43,12 @@ public class UserInteractiveGrading {
         }
         return output;
     }
+
+    private int getMouseX() {
+        return MouseInfo.getPointerInfo().getLocation().x;
+    }
+
+    private int getMouseY() {
+        return MouseInfo.getPointerInfo().getLocation().y;
+    }
 }
