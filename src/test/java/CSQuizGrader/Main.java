@@ -1,5 +1,7 @@
 package CSQuizGrader;
 
+import UserInteractiveGrader.EasyImage;
+
 public class Main {
     public static void main(String[] args) {
 //        runCollectionsAnalysis();
@@ -20,7 +22,8 @@ public class Main {
      * 7. send these scores through email
      */
     public static void userInteractiveGradingSystem() {
-
+        EasyImage easyImage = new EasyImage("blankTest.jpg");
+        easyImage.display();
     }
 
     public static void runCollectionsAnalysis() {
