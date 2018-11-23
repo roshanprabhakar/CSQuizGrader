@@ -2,6 +2,7 @@ package UserInteractiveGrader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -14,19 +15,28 @@ public class UserInteractiveGrading {
     private final String separator = File.separator;
     private String imagePath = "src" + separator + "ScannedImageSources" + separator;
 
+
     public void run() {
 
-        ArrayList<Integer> startXForALlAnswers = new ArrayList<>();
-        ArrayList<Integer> finalXForALlAnswers = new ArrayList<>();
-        ArrayList<Integer> startYForALlAnswers = new ArrayList<>();
-        ArrayList<Integer> finalYForALlAnswers = new ArrayList<>();
+        ArrayList<AnswerField> answers = new ArrayList<>();
+        File[] blankTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
 
-        File[] blanckTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
-        for (File page : blanckTest) {
+        for (File page : blankTest) {
+
             EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
-            pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro
-            new Scanner(System.in).nextLine(); //replace this with drag cross hair
+            pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro in pixels
+
+            AnswerField ans = new AnswerField(new int[2], new int[2]);
+            ans.setStartXAndY(mouseIsClicked()[0], mouseIsClicked()[1]); //records first click
+            ans.setEndXAndY(mouseIsClicked()[0], mouseIsClicked()[1]); //records second click
+            answers.add(ans);
+
+
         }
+    }
+
+    private int[] mouseIsClicked() {
+        return new int[2];
     }
 
     //may not be needed
