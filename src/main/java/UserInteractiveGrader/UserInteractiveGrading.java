@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import CSQuizGrader.*;
 
@@ -24,7 +25,7 @@ public class UserInteractiveGrading {
         for (File page : blanckTest) {
             EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
             pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro
-            //add the bounds depicted by mouse
+            new Scanner(System.in).nextLine(); //replace this with drage crosshair
         }
     }
 
