@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 //        runCollectionsAnalysis();
-        userInteractiveGradingSystem();
+        runUserInteractiveGradingSystem();
     }
 
     /**
@@ -24,9 +24,10 @@ public class Main {
      * 6. generate student summary, with comments and scores
      * 7. send these scores through email
      */
-    public static void userInteractiveGradingSystem() {
+    public static void runUserInteractiveGradingSystem() {
 
         UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
+        userInteractiveGrading.run();
 
 //        EasyImage easyImage = new EasyImage("blankTest.jpg");
 //        easyImage.display(easyImage.scaleImage(400, 500)); //random numbers to test

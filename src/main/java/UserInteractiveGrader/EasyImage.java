@@ -35,7 +35,7 @@ public class EasyImage {
         frame.setVisible(true);
     }
 
-    public ImageIcon scaleImage(int w, int h) {
+    public ImageIcon resize(int w, int h) {
 
         ImageIcon icon = new ImageIcon(path);
 
