@@ -25,7 +25,7 @@ public class UserInteractiveGrading {
         for (File page : blanckTest) {
             EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
             pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro
-            new Scanner(System.in).nextLine(); //replace this with drage crosshair
+            new Scanner(System.in).nextLine(); //replace this with drag cross hair
         }
     }
 
