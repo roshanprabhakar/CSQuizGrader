@@ -9,19 +9,11 @@ public class AnswerField {
         this.final_coordinates = final_coordinates;
     }
 
-    public void recordStartX() {
-
-    }
-
-    public void recordStartY() {
-
-    }
-
     public void setStartXAndY(int x, int y) {
-
+        start_coordinates = new int[] {x, y};
     }
 
     public void setEndXAndY(int x, int y) {
-
+        final_coordinates = new int[] {x, y};
     }
 }

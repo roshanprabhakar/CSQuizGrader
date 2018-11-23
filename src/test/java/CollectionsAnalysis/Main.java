@@ -1,9 +1,6 @@
-package CSQuizGrader;
+package CollectionsAnalysis;
 
-import UserInteractiveGrader.EasyImage;
 import UserInteractiveGrader.UserInteractiveGrading;
-
-import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {

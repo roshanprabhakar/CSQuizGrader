@@ -2,13 +2,10 @@ package UserInteractiveGrader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import CSQuizGrader.*;
+import java.util.Arrays;
 
 public class UserInteractiveGrading {
 
@@ -26,17 +23,37 @@ public class UserInteractiveGrading {
             EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
             pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro in pixels
 
+            //assuming all answerFields will be of same size and dimensions
             AnswerField ans = new AnswerField(new int[2], new int[2]);
-            ans.setStartXAndY(mouseIsClicked()[0], mouseIsClicked()[1]); //records first click
-            ans.setEndXAndY(mouseIsClicked()[0], mouseIsClicked()[1]); //records second click
+
+            while (!mouseIsClicked()) {
+                continue;
+            }
+
+            ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
+            System.out.println(Arrays.toString(ans.start_coordinates));
+
+            while (!mouseIsClicked()) {
+                continue;
+            }
+
+            ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
+            System.out.println(Arrays.toString(ans.final_coordinates));
             answers.add(ans);
 
 
         }
     }
 
-    private int[] mouseIsClicked() {
-        return new int[2];
+    private boolean mouseIsClicked() {
+        /* kevin implement this!! */
+        return true;
+    }
+
+    private int[] getLocationOfMouse() {
+        int mouseX = MouseInfo.getPointerInfo().getLocation().x;
+        int mouseY = MouseInfo.getPointerInfo().getLocation().y;
+        return new int[]{mouseX, mouseY};
     }
 
     //may not be needed

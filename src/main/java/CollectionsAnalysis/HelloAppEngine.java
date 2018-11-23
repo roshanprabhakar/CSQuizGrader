@@ -1,4 +1,4 @@
-package CSQuizGrader;
+package CollectionsAnalysis;
 
 import com.google.appengine.api.utils.SystemProperty;
 

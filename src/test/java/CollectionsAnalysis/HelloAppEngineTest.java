@@ -1,4 +1,4 @@
-package CSQuizGrader;
+package CollectionsAnalysis;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;

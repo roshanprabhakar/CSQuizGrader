@@ -1,4 +1,4 @@
-package CSQuizGrader;
+package CollectionsAnalysis;
 
 import java.util.*;
 
