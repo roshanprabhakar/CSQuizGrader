@@ -26,28 +26,25 @@ public class UserInteractiveGrading {
             //assuming all answerFields will be of same size and dimensions
             AnswerField ans = new AnswerField(new int[2], new int[2]);
 
-            while (!mouseIsClicked()) {
+            while (!pageInTemplate.mouseIsClicked()) {
+                System.out.println(pageInTemplate.mouseIsClicked());
                 continue;
             }
 
             ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
             System.out.println(Arrays.toString(ans.start_coordinates));
 
-            while (!mouseIsClicked()) {
+            while (!pageInTemplate.mouseIsClicked()) {
                 continue;
             }
 
             ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
             System.out.println(Arrays.toString(ans.final_coordinates));
+
             answers.add(ans);
 
 
         }
-    }
-
-    private boolean mouseIsClicked() {
-        /* kevin implement this!! */
-        return true;
     }
 
     private int[] getLocationOfMouse() {

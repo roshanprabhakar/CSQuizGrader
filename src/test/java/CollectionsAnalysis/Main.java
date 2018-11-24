@@ -10,7 +10,7 @@ public class Main {
 
     /**
      * Algorithm:
-     * 1. display blank test //done
+     * 1. display blank test
      * 2. User goes through test and drags boxes on the parts where there will be answers
      * 3. for every question:
      *      loop through all the responses, display them side by side

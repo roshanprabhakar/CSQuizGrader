@@ -9,6 +9,7 @@ public class EasyImage {
     private static final String separator = File.separator;
     private JFrame frame;
     private JLabel label;
+    private QGMouseListener mouseListener = new QGMouseListener();
     String path;
 
 
@@ -16,6 +17,7 @@ public class EasyImage {
         this.path = "src" + separator + "ScannedImageSources" + separator + name;
         this.frame = new JFrame();
         this.label = new JLabel();
+        frame.addMouseListener(mouseListener);
     }
 
     public void display() {
@@ -55,4 +57,8 @@ public class EasyImage {
         return new ImageIcon(icon.getImage().getScaledInstance(nw, nh, Image.SCALE_DEFAULT));
     }
 
+    public boolean mouseIsClicked() {
+        if (mouseListener.isClicked) return true;
+        return false;
+    }
 }
