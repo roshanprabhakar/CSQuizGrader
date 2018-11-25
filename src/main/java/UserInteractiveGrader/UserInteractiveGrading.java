@@ -15,18 +15,29 @@ public class UserInteractiveGrading {
 
     public void run() {
 
-        ArrayList<AnswerField> answers = new ArrayList<>();
+        ArrayList<ArrayList<AnswerField>> answers = new ArrayList<>();
         File[] blankTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
 
         for (File page : blankTest) {
+            ArrayList<AnswerField> answersForThisPage = new ArrayList<>();
 
-            AnswerField ans = recordAnswerField(page);
-            answers.add(ans);
+            int numOfAnswerFields;
+            numOfAnswerFields = Integer.parseInt(JOptionPane.showInputDialog("How many answer fields on this page?"));
+
+            for (int i = 0; i < numOfAnswerFields; i++) {
+                answersForThisPage.add(recordAnswerField(page));
+            }
+
+            answers.add(answersForThisPage);
         }
 
-        for (AnswerField ans : answers) {
-            ans.print();
+        System.out.println("reached");
+        for (ArrayList<AnswerField> array : answers) {
+            for (AnswerField ans : array) {
+                ans.print();
+            }
         }
+        System.exit(0);
     }
 
     private AnswerField recordAnswerField(File page) {
