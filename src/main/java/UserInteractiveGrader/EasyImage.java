@@ -61,6 +61,8 @@ public class EasyImage {
         JFrame rectangle = new JFrame();
         rectangle.setLocation(new Point(startX, startY));
         rectangle.setSize(endX-startX, endY-startY);
+        rectangle.getContentPane().setBackground(Color.GRAY);
+        rectangle.getRootPane().putClientProperty("Window.alpha", new Float(0.3f));
         rectangle.setUndecorated(true);
         rectangle.setVisible(true);
     }

@@ -66,6 +66,7 @@ public class UserInteractiveGrading {
         System.out.println();
 
         ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
+
         pageInTemplate.drawRectangleAt(ans.start_coordinates[0], ans.start_coordinates[1], ans.end_coordinates[0], ans.end_coordinates[1]);
 
         return ans;
@@ -75,26 +76,6 @@ public class UserInteractiveGrading {
         int mouseX = MouseInfo.getPointerInfo().getLocation().x;
         int mouseY = MouseInfo.getPointerInfo().getLocation().y;
         return new int[]{mouseX, mouseY};
-    }
-
-    //may not be needed
-    private void printLocalizedPartOfScreen(int topLeftX, int topLeftY, int height, int width) {
-        try {
-            //define image from screen
-            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-            Robot robot = new Robot();
-            BufferedImage img = robot.createScreenCapture(new Rectangle(topLeftX, topLeftY, width, height));
-
-            //print it out
-            JFrame frame = new JFrame();
-            frame.getContentPane().setLayout(new FlowLayout());
-            frame.getContentPane().add(new JLabel(new ImageIcon(img)));
-            frame.pack();
-            frame.setVisible(true);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private int getMouseX() {
