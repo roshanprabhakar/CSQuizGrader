@@ -31,16 +31,27 @@ public class UserInteractiveGrading {
             }
 
             ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
-            System.out.println(Arrays.toString(ans.start_coordinates));
+
+            //makes sure mouse is released before moving on
+            while (pageInTemplate.mouseIsClicked()) {
+                continue;
+            }
 
             while (!pageInTemplate.mouseIsClicked()) {
                 continue;
             }
 
             ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
-            System.out.println(Arrays.toString(ans.final_coordinates));
+
+            while (pageInTemplate.mouseIsClicked()) {
+                continue;
+            }
 
             answers.add(ans);
+        }
+
+        for (AnswerField ans : answers) {
+            ans.print();
         }
     }
 

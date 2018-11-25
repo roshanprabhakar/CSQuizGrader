@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 
 public class QGMouseListener implements MouseListener {
 
-    boolean isClicked;
+    public boolean isClicked;
 
     public void mouseClicked(MouseEvent arg0) {
         isClicked = true;
@@ -21,6 +21,5 @@ public class QGMouseListener implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent arg0) {
-
     }
 }

@@ -58,7 +58,10 @@ public class EasyImage {
     }
 
     public boolean mouseIsClicked() {
-        if (mouseListener.isClicked) return true;
+        if (mouseListener.isClicked) {
+            mouseListener.isClicked = false; //reset it
+            return true;
+        }
         return false;
     }
 }
