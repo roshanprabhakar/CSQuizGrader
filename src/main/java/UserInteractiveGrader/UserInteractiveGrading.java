@@ -27,7 +27,6 @@ public class UserInteractiveGrading {
             AnswerField ans = new AnswerField(new int[2], new int[2]);
 
             while (!pageInTemplate.mouseIsClicked()) {
-                System.out.println(pageInTemplate.mouseIsClicked());
                 continue;
             }
 
@@ -42,8 +41,6 @@ public class UserInteractiveGrading {
             System.out.println(Arrays.toString(ans.final_coordinates));
 
             answers.add(ans);
-
-
         }
     }
 
