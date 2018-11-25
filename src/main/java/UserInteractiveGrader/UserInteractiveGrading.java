@@ -34,7 +34,6 @@ public class UserInteractiveGrading {
             }
             System.out.println();
 
-            ans.print();
             System.out.println("mouse clicked");
             ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
 
