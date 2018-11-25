@@ -20,41 +20,47 @@ public class UserInteractiveGrading {
 
         for (File page : blankTest) {
 
-            EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
-            pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro in pixels
-
-            //code to record one answer sheet in file page
-            //assuming all answerFields will be of same size and dimensions
-            AnswerField ans = new AnswerField(new int[2], new int[2]);
-
-            //makes sure mouse is clicked
-            while (!pageInTemplate.mouseIsClicked()) {
-                System.out.print(' ');
-                continue;
-            }
-            System.out.println();
-
-            System.out.println("mouse clicked");
-            ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
-
-            //allows time for the user to drag the mouse
-            while (!pageInTemplate.mouseIsReleased()) {
-                System.out.print(' ');
-                continue;
-            }
-            System.out.println();
-
-            System.out.println("released");
-            ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
-
+            AnswerField ans = recordAnswerField(page);
             answers.add(ans);
-            //end of recording one answer sheet
-            //in future, will make arraylist of arraylist, where inner arraylists contains all answer fields for each page
         }
 
         for (AnswerField ans : answers) {
             ans.print();
         }
+    }
+
+    private AnswerField recordAnswerField(File page) {
+
+        EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
+        pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro in pixels
+
+        //code to record one answer sheet in file page
+        //assuming all answerFields will be of same size and dimensions
+        AnswerField ans = new AnswerField(new int[2], new int[2]);
+
+        //makes sure mouse is clicked
+        while (!pageInTemplate.mouseIsClicked()) {
+            System.out.print(' ');
+            continue;
+        }
+        System.out.println();
+
+        System.out.println("mouse clicked");
+        ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
+
+        //allows time for the user to drag the mouse
+        while (!pageInTemplate.mouseIsReleased()) {
+            System.out.print(' ');
+            continue;
+        }
+        System.out.println();
+
+        System.out.println("released");
+        ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
+        //end of recording one answer sheet
+        //in future, will make arraylist of arraylist, where inner arraylists contains all answer fields for each page
+
+        return ans;
     }
 
     private int[] getLocationOfMouse() {
