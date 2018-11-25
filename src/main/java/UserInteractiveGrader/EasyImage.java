@@ -57,6 +57,14 @@ public class EasyImage {
         return new ImageIcon(icon.getImage().getScaledInstance(nw, nh, Image.SCALE_DEFAULT));
     }
 
+    public void drawRectangleAt(int startX, int startY, int endX, int endY) {
+        JFrame rectangle = new JFrame();
+        rectangle.setLocation(new Point(startX, startY));
+        rectangle.setSize(endX-startX, endY-startY);
+        rectangle.setUndecorated(true);
+        rectangle.setVisible(true);
+    }
+
     public boolean mouseIsClicked() {
         return mouseListener.isClicked;
     }
