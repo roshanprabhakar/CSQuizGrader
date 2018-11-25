@@ -40,5 +40,6 @@ Algorithm:
 5. generate individual reports
 
 # --- BUGS ---
-Loop continues, after performing operations on all files
+Loop continues, after performing operations on all files, temporarily fixed with System.exit()
 can't exit while loops without printing something
+JOptionPane sometimes not allowing input
