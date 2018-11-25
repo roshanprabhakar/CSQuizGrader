@@ -10,8 +10,8 @@ public class Main {
 
     /**
      * Algorithm:
-     * 1. display blank test
-     * 2. User goes through test and drags boxes on the parts where there will be answers
+     * 1. display blank test //done
+     * 2. User goes through test and drags boxes on the parts where there will be answers //done
      * 3. for every question:
      *      loop through all the responses, display them side by side
      *      each should have two input boxes under them: 1 for displaying sentence comments,

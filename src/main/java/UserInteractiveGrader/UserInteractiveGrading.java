@@ -2,10 +2,8 @@ package UserInteractiveGrader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class UserInteractiveGrading {
 
@@ -13,7 +11,7 @@ public class UserInteractiveGrading {
     private String imagePath = "src" + separator + "ScannedImageSources" + separator;
 
 
-    public void run() {
+    public void run() throws InterruptedException {
 
         ArrayList<ArrayList<AnswerField>> answers = new ArrayList<>();
         File[] blankTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
@@ -34,7 +32,8 @@ public class UserInteractiveGrading {
             answers.add(answersForThisPage);
         }
 
-        System.out.println("reached");
+        Thread.sleep(1000);
+        //display all positions
         for (ArrayList<AnswerField> array : answers) {
             for (AnswerField ans : array) {
                 ans.print();
