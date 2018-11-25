@@ -21,7 +21,7 @@ public class Main {
      * 6. generate student summary, with comments and scores
      * 7. send these scores through email
      */
-    public static void runUserInteractiveGradingSystem() {
+    public static void runUserInteractiveGradingSystem() throws InterruptedException {
 
         UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
         userInteractiveGrading.run();
