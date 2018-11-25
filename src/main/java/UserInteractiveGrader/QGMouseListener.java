@@ -18,11 +18,9 @@ public class QGMouseListener implements MouseListener {
 
     public void mousePressed(MouseEvent arg0) {
         isClicked = true;
-        System.out.println("pressed");
     }
 
     public void mouseReleased(MouseEvent arg0) {
         isClicked = false;
-        System.out.println("released");
     }
 }

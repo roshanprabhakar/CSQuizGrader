@@ -21,6 +21,8 @@ public class UserInteractiveGrading {
         for (File page : blankTest) {
             ArrayList<AnswerField> answersForThisPage = new ArrayList<>();
 
+            new EasyImage("AllPagesOfBlankTest" + separator + page.getName()).display(new EasyImage("AllPagesOfBlankTest" + separator + page.getName()).resize(1280, 800));
+
             int numOfAnswerFields;
             numOfAnswerFields = Integer.parseInt(JOptionPane.showInputDialog("How many answer fields on this page?"));
 
