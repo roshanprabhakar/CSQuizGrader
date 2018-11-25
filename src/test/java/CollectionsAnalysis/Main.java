@@ -3,7 +3,7 @@ package CollectionsAnalysis;
 import UserInteractiveGrader.UserInteractiveGrading;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        runCollectionsAnalysis();
         runUserInteractiveGradingSystem();
     }
