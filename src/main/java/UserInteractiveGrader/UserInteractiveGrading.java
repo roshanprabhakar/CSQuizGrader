@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserInteractiveGrading {
 
@@ -13,43 +14,47 @@ public class UserInteractiveGrading {
 
     public void run() throws InterruptedException {
 
-        ArrayList<ArrayList<AnswerField>> answers = getAllAnswerFields();
-        //each arraylist in the central arraylist represents a file
+        HashMap<String, ArrayList<AnswerField>> answerFields = getAllAnswerFields();
+        //HashMap mapping page name to list of answer fields on that page
 
 
-        //display all positions
-        for (ArrayList<AnswerField> array : answers) {
-            for (AnswerField ans : array) {
+
+        System.out.println(answerFields);
+        for (String file : answerFields.keySet()) {
+            for (AnswerField ans : answerFields.get(file)) {
                 ans.print();
             }
         }
+
+
         System.exit(0);
     }
 
-    private ArrayList<ArrayList<AnswerField>> getAllAnswerFields() throws InterruptedException {
+    private HashMap<String, ArrayList<AnswerField>> getAllAnswerFields() throws InterruptedException {
 
-        ArrayList<ArrayList<AnswerField>> answers = new ArrayList<>();
+        HashMap<String, ArrayList<AnswerField>> answers = new HashMap<>();
         File[] blankTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
 
         for (File page : blankTest) {
-            ArrayList<AnswerField> answersForThisPage = new ArrayList<>();
+
+            answers.put(page.getName(), new ArrayList<>());
 
             EasyImage pageInTemplate = new EasyImage("AllPagesOfBlankTest" + separator + page.getName()); //when displayed, whole thing should fit in
-            pageInTemplate.display(pageInTemplate.resize(1280, 800)); //readable on dimensions of a 13-inch macbook pro in pixels
+            pageInTemplate.display(pageInTemplate.resize(1000, 1000)); //readable on dimensions of a 13-inch macbook pro in pixels
 
-            int numOfAnswerFields;
-            numOfAnswerFields = Integer.parseInt(JOptionPane.showInputDialog("How many answer fields on this page?"));
+            int numOfAnswerFields = Integer.parseInt(JOptionPane.showInputDialog("How many answer fields on this page?"));
 
             for (int i = 0; i < numOfAnswerFields; i++) {
-                answersForThisPage.add(recordAnswerField(page, pageInTemplate));
+                answers.get(page.getName()).add(recordAnswerField(page.getName(), pageInTemplate));
             }
-            answers.add(answersForThisPage);
         }
+
         Thread.sleep(1000);
+
         return answers;
     }
 
-    private AnswerField recordAnswerField(File page, EasyImage pageInTemplate) {
+    private AnswerField recordAnswerField(String page, EasyImage pageInTemplate) {
 
         //code to record one answer sheet in file page
         //assuming all answerFields will be of same size and dimensions

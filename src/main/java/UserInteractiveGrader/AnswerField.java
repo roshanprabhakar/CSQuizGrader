@@ -6,9 +6,9 @@ import java.util.Arrays;
 public class AnswerField {
     int[] start_coordinates;
     int[] end_coordinates;
-    File identity;
+    String identity;
 
-    public AnswerField(int[] start_coordinates, int[] final_coordinates, File identity) {
+    public AnswerField(int[] start_coordinates, int[] final_coordinates, String identity) {
         this.start_coordinates = start_coordinates;
         this.end_coordinates = final_coordinates;
         this.identity = identity;
@@ -16,14 +16,9 @@ public class AnswerField {
 
     public void print() {
         System.out.println("--- this answer field ---");
-        System.out.println("This for file " + identity.getName());
+        System.out.println("This for file " + identity);
         System.out.println("start coordinates: " + Arrays.toString(start_coordinates));
         System.out.println("end coordinates: " + Arrays.toString(end_coordinates));
-    }
-
-    public boolean checkIdentityWith(File file) {
-        if (this.identity == file) return true;
-        return false;
     }
 
     public void setStartXAndY(int x, int y) {
