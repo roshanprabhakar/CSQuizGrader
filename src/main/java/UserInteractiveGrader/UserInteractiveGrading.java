@@ -13,6 +13,21 @@ public class UserInteractiveGrading {
 
     public void run() throws InterruptedException {
 
+        ArrayList<ArrayList<AnswerField>> answers = getAllAnswerFields();
+        //each arraylist in the central arraylist represents a file
+
+
+        //display all positions
+        for (ArrayList<AnswerField> array : answers) {
+            for (AnswerField ans : array) {
+                ans.print();
+            }
+        }
+        System.exit(0);
+    }
+
+    private ArrayList<ArrayList<AnswerField>> getAllAnswerFields() throws InterruptedException {
+
         ArrayList<ArrayList<AnswerField>> answers = new ArrayList<>();
         File[] blankTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
 
@@ -28,18 +43,10 @@ public class UserInteractiveGrading {
             for (int i = 0; i < numOfAnswerFields; i++) {
                 answersForThisPage.add(recordAnswerField(page, pageInTemplate));
             }
-
             answers.add(answersForThisPage);
         }
-
         Thread.sleep(1000);
-        //display all positions
-        for (ArrayList<AnswerField> array : answers) {
-            for (AnswerField ans : array) {
-                ans.print();
-            }
-        }
-        System.exit(0);
+        return answers;
     }
 
     private AnswerField recordAnswerField(File page, EasyImage pageInTemplate) {
