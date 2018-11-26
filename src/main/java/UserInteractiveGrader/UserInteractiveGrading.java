@@ -17,7 +17,13 @@ public class UserInteractiveGrading {
         HashMap<String, ArrayList<AnswerField>> answerFields = getAllAnswerFields();
         //HashMap mapping page name to list of answer fields on that page
 
-
+        /**
+         * Loop through each page of test blueprint
+         * display everyone's AnswerField for AnswerField ans in blueprint
+         * diplay appropriate JOptionPanes
+         *     - scoring (x/y)
+         *     - comments
+         */
 
         System.out.println(answerFields);
         for (String file : answerFields.keySet()) {
