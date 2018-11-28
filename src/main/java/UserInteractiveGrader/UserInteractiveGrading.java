@@ -60,27 +60,25 @@ public class UserInteractiveGrading {
         return answers;
     }
 
-    private AnswerField recordAnswerField(String page, EasyImage pageInTemplate) {
+    private AnswerField recordAnswerField(String page, EasyImage pageInTemplate) throws InterruptedException {
 
         //code to record one answer sheet in file page
         //assuming all answerFields will be of same size and dimensions
         AnswerField ans = new AnswerField(new int[2], new int[2], page);
 
         //makes sure mouse is clicked
-        while (!pageInTemplate.mouseIsClicked()) {
-            System.out.print(' ');
+        while (!pageInTemplate.isPressed) {
+            Thread.sleep(10);
             continue;
         }
-        System.out.println();
 
         ans.setStartXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records first click
 
         //allows time for the user to drag the mouse
-        while (!pageInTemplate.mouseIsReleased()) {
-            System.out.print(' ');
+        while (pageInTemplate.isPressed) {
+            Thread.sleep(10);
             continue;
         }
-        System.out.println();
 
         ans.setEndXAndY(getLocationOfMouse()[0], getLocationOfMouse()[1]); //records second click
 

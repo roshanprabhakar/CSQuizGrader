@@ -1,6 +1,5 @@
 package UserInteractiveGrader;
 
-import java.io.File;
 import java.util.Arrays;
 
 public class AnswerField {

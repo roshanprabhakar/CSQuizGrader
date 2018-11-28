@@ -2,22 +2,24 @@ package UserInteractiveGrader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 
-public class EasyImage {
+public class EasyImage implements MouseListener {
 
     private static final String separator = File.separator;
-    private JFrame frame;
-    private JLabel label;
-    private QGMouseListener mouseListener = new QGMouseListener();
     String path;
+    private JFrame frame;
+    public boolean isPressed;
+    private JLabel label;
 
 
     public EasyImage(String name) {
         this.path = "src" + separator + "ScannedImageSources" + separator + name;
         this.frame = new JFrame();
         this.label = new JLabel();
-        frame.addMouseListener(mouseListener);
+        frame.addMouseListener(this);
     }
 
     public void display() {
@@ -60,18 +62,34 @@ public class EasyImage {
     public void drawRectangleAt(int startX, int startY, int endX, int endY) {
         JFrame rectangle = new JFrame();
         rectangle.setLocation(new Point(startX, startY));
-        rectangle.setSize(endX-startX, endY-startY);
+        rectangle.setSize(endX - startX, endY - startY);
         rectangle.getContentPane().setBackground(Color.GRAY);
         rectangle.getRootPane().putClientProperty("Window.alpha", new Float(0.3f));
         rectangle.setUndecorated(true);
         rectangle.setVisible(true);
     }
 
-    public boolean mouseIsClicked() {
-        return mouseListener.isClicked;
+    // --- Interface Methods ---
+    public void mouseClicked(MouseEvent e) {
+
     }
 
-    public boolean mouseIsReleased() {
-        return !mouseListener.isClicked;
+    public void mousePressed(MouseEvent e) {
+        isPressed = true;
     }
+
+    public void mouseReleased(MouseEvent e) {
+        isPressed = false;
+    }
+
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 }
+
+
