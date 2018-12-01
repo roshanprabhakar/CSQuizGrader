@@ -10,12 +10,19 @@ public class UserInteractiveGrading {
 
     private final String separator = File.separator;
     private String imagePath = "src" + separator + "ScannedImageSources" + separator;
+    HashMap<String, ArrayList<AnswerField>> ANSWER_FIELDS;
+    int numOfAnswers;
 
 
     public void run() throws InterruptedException {
 
-        HashMap<String, ArrayList<AnswerField>> answerFields = getAllAnswerFields();
-        //HashMap mapping page name to list of answer fields on that page
+        ANSWER_FIELDS = getAllAnswerFields(); //HashMap mapping page name to list of answer fields on that page
+
+        File studentResponses = new File(imagePath + "StudentResponses");
+        for (int answer = 0; answer < numOfAnswers; answer++) {
+            String page = getPageNameForProblem(answer + 1);
+            System.out.println(page);
+        }
 
         /**
          * Loop through each page of test blueprint
@@ -25,9 +32,9 @@ public class UserInteractiveGrading {
          *     - comments
          */
 
-        System.out.println(answerFields);
-        for (String file : answerFields.keySet()) {
-            for (AnswerField ans : answerFields.get(file)) {
+        System.out.println(ANSWER_FIELDS);
+        for (String file : ANSWER_FIELDS.keySet()) {
+            for (AnswerField ans : ANSWER_FIELDS.get(file)) {
                 ans.print();
             }
         }
@@ -41,7 +48,8 @@ public class UserInteractiveGrading {
         HashMap<String, ArrayList<AnswerField>> answers = new HashMap<>();
         File[] blankTest = new File(imagePath + "AllPagesOfBlankTest" + separator).listFiles();
 
-        for (File page : blankTest) {
+        int num = 0;
+        for (File page : reverse(blankTest)) {
 
             answers.put(page.getName(), new ArrayList<>());
 
@@ -51,20 +59,39 @@ public class UserInteractiveGrading {
             int numOfAnswerFields = Integer.parseInt(JOptionPane.showInputDialog("How many answer fields on this page?"));
 
             for (int i = 0; i < numOfAnswerFields; i++) {
-                answers.get(page.getName()).add(recordAnswerField(page.getName(), pageInTemplate));
+                num++;
+                answers.get(page.getName()).add(recordAnswerField(page.getName(), pageInTemplate, num));
             }
         }
 
+        numOfAnswers = num;
         Thread.sleep(1000);
 
         return answers;
     }
 
-    private AnswerField recordAnswerField(String page, EasyImage pageInTemplate) throws InterruptedException {
+    private File[] reverse(File[] list) {
+        File[] output = new File[list.length];
+        for (int i = 0; i < list.length; i++) {
+            output[i] = list[list.length - (i + 1)];
+        }
+        return output;
+    }
+
+    private String getPageNameForProblem(int problemNum) {
+        for (String page : ANSWER_FIELDS.keySet()) {
+            for (AnswerField ans : ANSWER_FIELDS.get(page)) {
+                if (ans.identity == problemNum) return page;
+            }
+        }
+        return "no page found";
+    }
+
+    private AnswerField recordAnswerField(String page, EasyImage pageInTemplate, int num) throws InterruptedException {
 
         //code to record one answer sheet in file page
-        //assuming all answerFields will be of same size and dimensions
-        AnswerField ans = new AnswerField(new int[2], new int[2], page);
+        //assuming all ANSWER_FIELDS will be of same size and dimensions
+        AnswerField ans = new AnswerField(new int[2], new int[2], num);
 
         //makes sure mouse is clicked
         while (!pageInTemplate.isPressed) {

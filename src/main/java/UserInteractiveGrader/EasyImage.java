@@ -69,7 +69,7 @@ public class EasyImage implements MouseListener {
         rectangle.setVisible(true);
     }
 
-    // --- Interface Methods ---
+    // --- Mouse Listener Interface Methods ---
     public void mouseClicked(MouseEvent e) {
 
     }
