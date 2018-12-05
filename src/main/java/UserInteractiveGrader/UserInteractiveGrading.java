@@ -115,7 +115,7 @@ public class UserInteractiveGrading {
                 new File(imagePath + "StudentResponses/" + student.getName() + separator + "answerFields").mkdir();
             }
 
-
+            //take a snapshot from the taken coordinates from that student's response given page and load it into answerFields
 
         }
 

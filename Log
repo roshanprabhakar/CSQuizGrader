@@ -39,6 +39,10 @@ Algorithm:
 4. After looped through all pages, generate a class report with all the problems and corresponding comments
 5. generate individual reports
 
+# NEW TODO
+1. Display as many jframes to the screen as possible
+2. automatically take a screenshot of a jframe, without actually opening the jframe
+
 # --- BUGS ---
 Loop continues, after performing operations on all files, temporarily fixed with System.exit()
 can't exit while loops without printing something
