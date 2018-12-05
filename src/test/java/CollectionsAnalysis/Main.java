@@ -2,6 +2,8 @@ package CollectionsAnalysis;
 
 import UserInteractiveGrader.UserInteractiveGrading;
 
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 //        runCollectionsAnalysis();
@@ -22,9 +24,12 @@ public class Main {
      * 7. send these scores through email
      */
     public static void runUserInteractiveGradingSystem() throws InterruptedException {
-
-        UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
-        userInteractiveGrading.run();
+        try {
+            UserInteractiveGrading userInteractiveGrading = new UserInteractiveGrading();
+            userInteractiveGrading.run();
+        } catch (IOException e) {
+            System.err.println("Unhandled IOException!");
+        }
 
 //        EasyImage easyImage = new EasyImage("blankTest.jpg");
 //        easyImage.display(easyImage.scaleImage(400, 500)); //random numbers to test

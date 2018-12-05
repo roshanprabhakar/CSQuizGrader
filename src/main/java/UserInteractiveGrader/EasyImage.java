@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 public class EasyImage implements MouseListener {
@@ -22,8 +23,7 @@ public class EasyImage implements MouseListener {
         frame.addMouseListener(this);
     }
 
-    public void display() {
-        ImageIcon icon = new ImageIcon(path);
+    public void display(ImageIcon icon) {
         label = new JLabel(icon);
         frame.add(label);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,12 +31,20 @@ public class EasyImage implements MouseListener {
         frame.setVisible(true);
     }
 
-    public void display(ImageIcon icon) {
-        label = new JLabel(icon);
-        frame.add(label);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    public void displayFromXandY(int x, int y) {
+        frame.setLocation(new Point(x, y));
+    }
+
+    public void close() {
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    }
+
+    public int getWidth() {
+        return new ImageIcon(path).getIconWidth();
+    }
+
+    public int getHeight() {
+        return new ImageIcon(path).getIconHeight();
     }
 
     public ImageIcon resize(int w, int h) {
@@ -71,7 +79,6 @@ public class EasyImage implements MouseListener {
 
     // --- Mouse Listener Interface Methods ---
     public void mouseClicked(MouseEvent e) {
-
     }
 
     public void mousePressed(MouseEvent e) {

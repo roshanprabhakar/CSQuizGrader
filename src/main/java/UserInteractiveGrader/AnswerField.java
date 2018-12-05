@@ -5,12 +5,16 @@ import java.util.Arrays;
 public class AnswerField {
     int[] start_coordinates;
     int[] end_coordinates;
-    int identity; //number of the problem
+    private int identity; //number of the problem
 
     public AnswerField(int[] start_coordinates, int[] final_coordinates, int identity) {
         this.start_coordinates = start_coordinates;
         this.end_coordinates = final_coordinates;
         this.identity = identity;
+    }
+
+    public int getIdentity() {
+        return identity;
     }
 
     public void print() {
