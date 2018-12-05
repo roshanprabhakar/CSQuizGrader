@@ -1,4 +1,4 @@
-package CollectionsAnalysis;
+package UserInteractiveGrader;
 
 import UserInteractiveGrader.UserInteractiveGrading;
 
@@ -34,15 +34,4 @@ public class Main {
 //        EasyImage easyImage = new EasyImage("blankTest.jpg");
 //        easyImage.display(easyImage.scaleImage(400, 500)); //random numbers to test
     }
-
-    public static void runCollectionsAnalysis() {
-        try {
-            Collections collections = new Collections();
-            collections.analyzeCollections();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
